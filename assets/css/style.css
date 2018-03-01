@@ -1,6 +1,56 @@
+
+@font-face {
+    font-family: 'broadwayregular';
+    src:/* url('../fonts/webfont/boadway_regular-webfont.woff2') format('woff2'),*/
+         url('../fonts/webfont/broadway_regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+*{
+    padding: 10px;
+}
+
+body{
+    background: linear-gradient(#ffffff,#ff0054);
+    max-width:900px; 
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+}
+
+}
  button,
     div,
     form,
     input {
       margin: 10px;
-    }
+}
+h1{
+	font-family:'broadwayregular' ;
+	font-size:50px;
+	color:#ff0054;
+    width: 500px;
+    position: center;
+
+}
+label{
+    font-family: ;
+    font-size:20px;
+    color:#ff0054;
+}
+#show{
+	background-color: white;
+    color: #ff0054;
+    border: 2px solid #d283fc;
+    border-radius: 12px;
+}
+#addGiphy{
+	background-color: white;
+    color: #ff0054;
+    border: 2px solid #72e7ff;
+    border-radius: 12px;
+   
+}
+.row{
+   width:650px;
+   position: center;
+}
