@@ -2,7 +2,7 @@
 var queens = ["Rue Paul", "Drag Race", "Yas", "Drag Queen", "Sasha Velor", "Shade", "Bye Felica"];
 
 // This function handles events where the add sass button is clicked
-$("#addGiph").on("click", function(event) {
+$("#addGiphy").on("click", function(event) {
     event.preventDefault();
     // This line of code will grab the input from the textbox
     var sass = $("#giphInput").val().trim();
@@ -22,26 +22,25 @@ glambttn();
 
 // Function for displaying sass data
 function glambttn() {
-
+    console.log("Working");
     // Deletes the queens prior to adding new queens
     // (this is necessary otherwise you will have repeat buttons)
-    $("#buttons-view").empty();
+    $(".dabttns").empty();
     // Loops through the array of queens
     for (var i = 0; i < queens.length; i++) {
 
         // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
         var sparkle = $("<button>");
         // Adds a class of sass to our button
-        sparkle.addClass("sass");
+        sparkle.addClass("sass btn-primary show");
         // Added a data-attribute
         sparkle.attr("data-name", queens[i]);
         // Provided the initial button text
         sparkle.text(queens[i]);
         // Added the button to the buttons-view div
-        $("#buttons-view").append(sparkle);
+        $(".dabttns").append(sparkle);
     }
 }
-
 // displayCatwalk function re-renders the HTML to display the appropriate content
 function displayCatwalk() {
 
@@ -50,34 +49,50 @@ function displayCatwalk() {
 
     // Creates AJAX call for the specific sass button being clicked
     $.ajax({
-        url: queeryURL,
-        method: "GET"
-    }).then(function(response) {
-        console.log(response);
-        // Creates a div to hold the sass
-        var crown = $("<div>")
+            url: queeryURL,
+            method: "GET"
+        }).then(function(response) {
+                console.log(response);
+                // Creates a div to hold the sass
+                var crown = $("<div class='box'>").html(response.data);
+                $("#giphView").append(crown);
+                //gif stills from response data
+                var poster = response.data[i].images.fixed_height_still.url;
+                var jiff = response.data[i].images.fixed_height.url;
+                var link = response.data[i].images.fixed_height_still;
+                var tearsheet = $("<img class='giphView'>").attr({"src":link,"data-still":poster,"data-animate":jiff,"data-state":"still"});
+                // Creates an element to hold the image
+               crown.append(image);
+               crown.append("<br>");
 
-        // Creates an element to hold the image
-        var poster = $("<img>").attr("src", imgURL);
+                // Appends the image
+              
 
-        // Appends the image
-        crown.append(poster);
+                // Puts the entire sass above the previous queens.
+                
 
-        // Puts the entire sass above the previous queens.
-        queens - view.preappend(crown);
-    });
-}
-
-//hover puase over giphs
-function freezeFrame(){
-  $("#giphView").hover(function(){
-    if ($(this).attr()==="still"){
-    }else{
-      $(this).att("src",$(this).attr("data-still"))
-    }
-  })
-}
-
+                //hover puase over giphs
+                $("#giphView").on({
+                'click': function() {
+                    var freezeFrame = $(this).attr("data-state");
+                    if (state === "still") {
+                        $(this).attr("src", $(this).attr("data-animate"));
+                        $(this).attr("data-state", "animate");
+                    } else {
+                        $(this).attr("src", $(this).attr("data-still"));
+                        $(this).attr("data-state", "still");
+                    }
+                }
+        })
+})
+$("#addGiphy").on("click", function(event) {
+    event.preventDefault();
+    var beat = $("#giphInput").val().trim();
+    queens.push(sass);
+    glambttn();
+})
+$(document).on("click","sass",displayGiphImages);
+glambttn();
 //when clicked grab 10 static (non animated gif) frm gify api
 //when hovers of static image>image plays
 
